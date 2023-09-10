@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+{% block content_page %}
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-violet-300 ">
+    <div class="sm:mx-auto md:w-full sm:max-w-sm">
+        <h1>Pro Edu Tuto</h1>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" action="#" method="POST">
+
+            {% csrf_token %}
+
+            <div>
+                <label for="username"
+                    class="label_style">{{form1.username.label}}</label>
+                <div class="mt-2">
+                    {{ form1.username}}
+                </div>
+            </div>
+            <div>
+                <label for="last_name"
+                    class="label_style">{{form1.email.label}}</label>
+                <div class="mt-2">
+                    {{form1.email}}
+                </div>
+            </div>
+            <div>{{ form1.errors }}</div>
+            <div class="flex">
+                <div class="">
+                    <div class="flex items-center justify-between">
+                        <label for="password" class="label_style ">{{ form1.password1.label }}</label>
+                    </div>
+                    <div class="mt-2">
+                        {{ form1.password1 }}
+                    </div>
+                </div>
+                <div class="ml-3">
+                    <div class="flex items-center justify-between">
+                        <label for="password" class="label_style">{{ form1.password2.label }}</label>
+                    </div>
+                    <div class="mt-2">
+                        {{ form1.password2 }}
+                    </div>
+                </div>
+                
+            </div>
+    </div>
+    <div>{{ form2.errors }}</div>
+    <div class="flex items-center justify-center">
+        {% include 'composants/_bouton.html.twig' with title='Envoyer' class='btn_envo btn' name='envoyer'%}
+    </div>
+    </form>
+</div>
+</div>
+<!-- On doit afficher le contenu ici -->
+{% endblock content_page %}

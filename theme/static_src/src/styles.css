@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btn{
+    @apply rounded-lg mx-3 my-6 w-60 font-bold text-white p-2
+}
+.btn_supp{
+    @apply  bg-red-400 
+}
+
+.btn_mod{
+    @apply bg-yellow-400 text-black
+}
+.btn_envo{
+    @apply bg-green-400 
+}
+
+.btn-nav{
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-bold
+}
+.btn-nav-1{
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-serif
+}
+.nav-mobile{
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium
+}
+
+/* regidteur */
+.form-control{
+    @apply w-full rounded-md ml-4
+}
+.label_style{
+    @apply block text-sm font-medium leading-6 text-gray-900 ml-2
+}
