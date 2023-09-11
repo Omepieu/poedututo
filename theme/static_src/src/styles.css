@@ -16,21 +16,51 @@
 .btn_envo{
     @apply bg-green-400 
 }
+.btn-login{
+
+}
 
 .btn-nav{
     @apply text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-bold
 }
+.btn-nav{
+   @apply hover:text-orange-500
+}
 .btn-nav-1{
-    @apply text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-serif
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-thin
 }
 .nav-mobile{
     @apply text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium
 }
 
 /* regidteur */
-.form-control{
-    @apply w-full rounded-md ml-4
+.signup input{
+    @apply w-full rounded-md !important
 }
-.label_style{
-    @apply block text-sm font-medium leading-6 text-gray-900 ml-2
+.signup input{
+    @apply hover:bg-slate-500 text-black font-semibold text-2xl
+}
+
+/* profile */
+
+.profil{
+    @apply w-full grid grid-cols-2 gap-5
+}
+.profil p{
+   @apply w-96
+}
+.profil p input{
+    @apply w-96 rounded-md block 
+}
+.profil p select{
+    @apply w-96 rounded-md block
+}
+.profil p label{
+    @apply text-xl font-light
+}
+.helptext{
+    @apply w-96 text-xs !important
+}
+#id_photo{
+    @apply w-full h-10 text-xl !important
 }

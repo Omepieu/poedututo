@@ -1,56 +1,57 @@
 {% extends "main.html" %}
 {% block content_page %}
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-violet-300 ">
-    <div class="sm:mx-auto md:w-full sm:max-w-sm">
-        <h1>Pro Edu Tuto</h1>
-    </div>
 
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="#" method="POST">
 
-            {% csrf_token %}
 
-            <div>
-                <label for="username"
-                    class="label_style">{{form1.username.label}}</label>
-                <div class="mt-2">
-                    {{ form1.username}}
-                </div>
-            </div>
-            <div>
-                <label for="last_name"
-                    class="label_style">{{form1.email.label}}</label>
-                <div class="mt-2">
-                    {{form1.email}}
-                </div>
-            </div>
-            <div>{{ form1.errors }}</div>
-            <div class="flex">
-                <div class="">
-                    <div class="flex items-center justify-between">
-                        <label for="password" class="label_style ">{{ form1.password1.label }}</label>
-                    </div>
-                    <div class="mt-2">
-                        {{ form1.password1 }}
-                    </div>
-                </div>
-                <div class="ml-3">
-                    <div class="flex items-center justify-between">
-                        <label for="password" class="label_style">{{ form1.password2.label }}</label>
-                    </div>
-                    <div class="mt-2">
-                        {{ form1.password2 }}
-                    </div>
-                </div>
-                
-            </div>
+<div class="max-w-md mx-auto my-auto bg-gray-400 rounded-md">
+    <!-- header -->
+    <div class="header-login bg-blue-950 text-center rounded-md">
+        <div class="brandig w-full items-stretch h-14">
+            <h1 class="m-auto">
+                <a class="text-white text-4xl font-thin" href="#">Signup</a>
+                <button class="text-white text-4xl font-thin">&rtimes;</button>
+            </h1>
+        </div>
     </div>
-    <div>{{ form2.errors }}</div>
-    <div class="flex items-center justify-center">
-        {% include 'composants/_bouton.html.twig' with title='Envoyer' class='btn_envo btn' name='envoyer'%}
+    <!-- body -->
+    <div class="content-login w-full">
+        <!-- message d'erreur -->
+        <div class="mx-2 my-3 ">
+            <p class="w-full mx-2 text-red-600 text-xl">
+            </p>
+        </div>
+        <div class="content-start">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="signup">
+                    <div class="mx-3 my-2">
+                        <label class="w-full py-2 font-thin text-3xl" for="">Nom d’utilisateur</label>
+                        <p>{{ form1.username}}</p>
+                    </div>
+                    <div class="mx-3 my-2">
+                        <label class="w-full py-2 font-thin text-3xl" for="">Nom</label>
+                        <p>{{ form1.last_name}}</p>
+                    </div>
+                    <div class="mx-3 my-2">
+                        <label class="w-full py-2 font-thin text-3xl" for="">Adresse email</label>
+                       <p> {{ form1.email}}</p>
+                    </div>
+                    <div class="mx-3 my-2">
+                        <label class="w-full py-2 font-thin text-3xl" for="">{{ form1.password1.label }}</label>
+                        <p>{{ form1.password1 }}</p>
+                    </div>
+                    <div class="mx-3 my-2">
+                        <label class="w-full py-2 font-thin text-3xl" for="">{{ form1.password2.label }}</label>
+                        <p class="w-full">{{ form1.password2 }}</p>
+                    </div>
+                </div>
+                <div class="footer-login mx-auto text-center align-bottom">
+                    {% include 'composants/_bouton.html' with title='Envoyer' class='btn  bg-blue-900' name='envoyer'%}
+                </div>
+            </form>
+        </div>
     </div>
-    </form>
+    <!-- footer -->
+    
 </div>
-</div>
-<!-- On doit afficher le contenu ici -->
 {% endblock content_page %}

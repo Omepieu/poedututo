@@ -12,7 +12,7 @@ def renommer_image(instance, filename):
 
 class Profil(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_de_naissance = models.DateField(auto_now_add=False, null=True)
+    date_de_naissance = models.DateField(null=True, editable=True)
     pays = models.CharField(max_length=100, null=True, blank=True)
     ville =models.CharField(max_length=100, null=True, blank=True) 
     telephone = models.CharField(max_length=20, null=True, blank=True)
@@ -40,6 +40,16 @@ class Profil(models.Model):
 
     def __str__ (self):
         return self.user.username
+    
+    # def update_profile(self, data):
+    #     self.date_de_naissance = data.get('date_de_naissance', self.date_de_naissance)
+    #     self.pays = data.get('pays', self.pays)
+    #     self.ville = data.get('ville', self.ville)
+    #     self.telephone = data.get('telephone', self.telephone)
+    #     self.photo = data.get('photo', self.photo)
+    #     self.sexe = data.get('sexe', self.sexe)
+    #     self.type_user = data.get('type_user', self.type_user)
+    #     self.save()
 
 class Code(models.Model):
     code_html = models.TextField(max_length=800, blank=True)
