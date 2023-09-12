@@ -94,3 +94,9 @@ def update_profile(request):
 
     context = {'user_form': user_form, 'profil_form': profil_form}
     return render(request, 'utilisateur/profil.html', context) 
+
+def recupere_users(request):
+    users = User.objects.all()
+    profils = Profil.objects.all()
+    context = {'users':users, 'profils':profils}
+    return render(request, 'utilisateur/list_user.html', context)

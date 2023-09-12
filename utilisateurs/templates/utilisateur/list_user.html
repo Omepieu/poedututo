@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content_page %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom d'utilisateur</th>
+            <th>Nom</th>
+            <th>Adresse email</th>
+            <th>Pays/ville</th>
+            <th>Type d'utilisateur</th>
+            <th>Sexe</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for utilisateur in profils %}
+        {% for pr in users %}
+
+        <tr>
+            <td>{{ pr.username }}</td>
+            <td>{{ pr.last_name }}</td>
+            <td>{{ pr.email }}</td>
+            <td>{% if utilisateur.pays and utilisateur.ville %}
+            {{ utilisateur.pays }}/{{ utilisateur.ville }}
+            {% else %}
+            <span>NULL</span>
+            {% endif %}</td> 
+            <td>{{ utilisateur.type_user }}</td> 
+            <td>{{ utilisateur.sexe }}</td>
+        </tr>
+        if
+        {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content_page %}

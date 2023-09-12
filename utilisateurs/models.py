@@ -27,16 +27,16 @@ class Profil(models.Model):
     ]
     sexe = models.CharField(max_length=8, choices=SEXE, default=select)
 
-    APPRENANT = 'appre'
-    ETUDIANT = 'ETU'
-    ENSEIGNANT = 'ENSEI'
+    APPRENANT = 'Apprenant(e)'
+    ETUDIANT = 'Etudiant(e)'
+    ENSEIGNANT = 'Enseignant(e)'
     TYPES = [
         (APPRENANT, 'Apprenant(e)'),
         (ETUDIANT, 'Etudiant(e)'),
         (ENSEIGNANT, 'Enseignant(e)')
     ]
 
-    type_user = models.CharField(max_length=9, choices=TYPES, default=ETUDIANT)
+    type_user = models.CharField(max_length=14, choices=TYPES, default=ETUDIANT)
 
     def __str__ (self):
         return self.user.username

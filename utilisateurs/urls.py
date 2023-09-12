@@ -10,6 +10,7 @@ urlpatterns = [
     path('connexion', views.connexion, name='connexion'),
     path('logout', views.deconnection, name='logout'),
     path('profil', views.update_profile, name='profil'),
+    path('liste_users', views.recupere_users, name='liste_users'),
 
     path('code', views.sauvegader, name='code'),
 
