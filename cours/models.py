@@ -14,16 +14,16 @@ class Niveaux(models.Model):
     def __str__(self):
         return self.nom
     
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.nom)
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.slug:
+    #         self.slug = slugify(self.nom)
+    #     super().save(*args, **kwargs)
 
 class Matiere (models.Model):
     matiere_id = models.CharField(unique=True, max_length=100)
     nom = models.CharField(max_length=100)
     slug = models.SlugField(null=True, blank=True)
-    niveau = models.ForeignKey(Niveaux, on_delete=models.CASCADE, related_name='matiere')
+    niveau = models.ForeignKey(Niveaux, on_delete=models.CASCADE, related_name='matieres')
     image = models.ImageField(upload_to='matieres', blank=True)
     description = models.TextField()
     created = models.DateField(auto_now_add=True)
@@ -49,15 +49,18 @@ class Lesson(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
+    def get_pdf_url(self):
+        return reverse('cours:lesson', kwargs={'niveau':self.niveau.slug, 'slug':self.matiere.slug})
+    
     class Meta:
-        ordering = ['lesson_id']
+        ordering = ['id']
 
     def __str__(self):
-        return self.nom
+        return self.titre
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.nom)
+            self.slug = slugify(self.titre)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):

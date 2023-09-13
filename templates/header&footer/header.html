@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="bg-gray-800 w-full">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
@@ -10,7 +11,7 @@
                     <div class="ml-10 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="{% url 'accueil' %}" class="btn-nav">Accueil</a>
-                        <a href="#" class="btn-nav">Cours</a>
+                        <a href="{% url 'cours:niveau_liste' %}" class="btn-nav">Cours</a>
                         <a href="#" class="btn-nav">Exercices</a>
                         <a href="#" class="btn-nav">Quizzes</a>
                     </div>
@@ -33,33 +34,30 @@
                         <a href="{% url 'connexion' %}" class="btn-nav-1">Login</a>
                         <a href="{% url 'registeur' %}" class="btn-nav-1">Signup</a>
                         {% endif %}
-                        
+
                     </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="md:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="nav-mobile">Accueil</a>
-            <a href="#" class="nav-mobile">Cours</a>
-            <a href="#" class="nav-mobile">Exercices</a>
-            <a href="#" class="nav-mobile">Quizzes</a>
-        </div>
-        <div class="border-t border-gray-700 pb-3 pt-4">
-            <div class="flex items-center px-5">
-                <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt="">
-                </div>
-                <div class="ml-3">
-                    <div class="text-base font-medium leading-none text-white">Romain</div>
                 </div>
             </div>
-
         </div>
-    </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="md:hidden" id="mobile-menu">
+            <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                <a href="#" class="nav-mobile">Accueil</a>
+                <a href="#" class="nav-mobile">Cours</a>
+                <a href="#" class="nav-mobile">Exercices</a>
+                <a href="#" class="nav-mobile">Quizzes</a>
+            </div>
+            <div class="border-t border-gray-700 pb-3 pt-4">
+                <div class="flex items-center px-5">
+                   
+
+                    <div class="ml-3">
+                        <div class="text-base font-medium leading-none text-white">Romain</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 </nav>

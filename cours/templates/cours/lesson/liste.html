@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content_page %}
+  <p>La liste des leçcons</p>
+  {% for lesson in lessons %}
+    <h1>{{ lesson.titre }}</h1>
+    <iframe src="{{ lesson.get_pdf_url }}" frameborder="0" width="900" height="500"></iframe>
+
+  {% endfor %}
+{% endblock content_page %}

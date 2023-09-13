@@ -16,7 +16,7 @@ class Profil(models.Model):
     pays = models.CharField(max_length=100, null=True, blank=True)
     ville =models.CharField(max_length=100, null=True, blank=True) 
     telephone = models.CharField(max_length=20, null=True, blank=True)
-    photo = models.FileField(upload_to=renommer_image, blank=True)
+    photo = models.ImageField(upload_to=renommer_image, blank=True)
     select ='Non sexe'
     FEMININ = 'F'
     MASCULIN = 'M'

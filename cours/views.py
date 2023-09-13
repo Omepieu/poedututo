@@ -14,19 +14,29 @@ def editeur_de_code(request):
 class NiveauListView(ListView):
     context_object_name = 'niveaux'
     model = Niveaux
-    template_name = 'programmes/niveaulist.html'
+    template_name = 'cours/niveaux/liste.html'
 
 class MatiereListView(DetailView):
     context_object_name = 'niveau'
     model = Niveaux
-    template_name = 'programmes/matierelist.html'
+    template_name = 'cours/matieres/liste.html'
 
 class LeconListView(ListView):
     paginate_by = 2
-    context_object_name = 'matieres'
+    context_object_name = 'lessons'
     model = Lesson
-    template_name = 'programmes/leconlist.html'
-    
+    template_name = 'cours/lesson/liste.html'
+
+    def get_queryset(self):
+        # Obtenez la liste des leçons
+        queryset = super().get_queryset()
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Ajoutez un champ "pdf_url" ou "pdf_content" à chaque leçon dans le contexte
+        context['lessons'] = Lesson.objects.all()  # Vous pouvez personnaliser cela pour obtenir les leçons que vous souhaitez
+        return context
     # def get_queryset(self):
     #     queryset = super().get_queryset()
     #     nom = self.request.GET.get("recherche")
