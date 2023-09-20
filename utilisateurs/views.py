@@ -12,10 +12,6 @@ from django.contrib.auth.decorators import login_required
 # def bord(request):
 #     return render(request, 'utilisateurs/bord.html')
 
-def accueil(request):
-    return render(request, 'base/home.html')
-
-
 def registeur(request):
     registeur_id = False
     if request.method == "POST":

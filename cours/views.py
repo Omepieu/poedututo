@@ -7,6 +7,9 @@ from cours.forms import lessonForm, FormDeCommentaire, FormDeReponse
 from cours.models import Niveaux, Matiere, Lesson
 from django.views.generic import  DetailView, ListView, CreateView, UpdateView, DeleteView, FormView
 # Create your views here.
+def accueil(request):
+    matieres = Matiere.objects.all()
+    return render(request, 'base/home.html', {'matieres':matieres})
 
 def editeur_de_code(request):
     return render(request, 'editors/code.html')

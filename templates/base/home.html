@@ -1,5 +1,22 @@
 {% extends "main.html" %}
 {% block content_page %}
-<p>Home page</p>
-
+<div class="grid grid-cols-3 gap-4">
+  {% for matiere in matieres %}
+  <div class="w-96 h-80 bg-white shadow-md mx-2 mb-4 rounded-lg overflow-hidden">
+    <img src="image1.jpg" alt="Image 1" class="w-full h-32 object-cover">
+    <div class="p-4">
+      <h2 class="text-xl font-semibold mb-2">Titre de la carte 1</h2>
+      <p class="text-gray-600">Description de la carte 1.</p>
+      <div class="mt-4">
+        <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md inline-block">Bouton</a>
+      </div>
+      <div class="mt-1">
+        <span class="text-sm text-gray-400 text-right">Niveau : {{matiere.niveau}}</span>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+    
+  {% endfor %}
+</div>
 {% endblock content_page %}
