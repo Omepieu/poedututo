@@ -1,5 +1,5 @@
 from django import forms
-from utilisateurs.models import Profil, Code
+from utilisateurs.models import Profil
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
@@ -42,16 +42,3 @@ class ProfilUpdateForm(forms.ModelForm):
         }
 
 
-class CodeForm(forms.ModelForm):
-    class Meta:
-        model = Code
-        fields = [
-            'code_html', 
-            'code_css', 
-            'code_js',
-        ]
-        widgets = {
-            'code_html':forms.Textarea(attrs={'class': 'test', 'id':'html-code'}),
-            'code_css':forms.Textarea(attrs={'class': 'test', 'id':'css-code'}),
-            'code_js':forms.Textarea(attrs={'class': 'test', 'id':'js-code'}),
-        }

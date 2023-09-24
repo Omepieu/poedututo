@@ -1,0 +1,15 @@
+
+{% load static %}
+
+{% block detail_content %}
+<!-- Contenu de detail.html -->
+<div class="h-screen overflow-hidden w-11/12">
+  <h1 class="text-3xl">{{lesson.niveau}}>{{lesson.matiere}}>{{ lesson.titre}}</h1>
+  {% if lesson.pdf %} 
+  <embed src="{{ lesson.pdf.url }}" type="application/pdf">
+  <iframe src="{{ lesson.pdf.url }}" frameborder="0"></iframe>
+  {% endif %}
+    <!-- ... Le reste de votre contenu detail.html ... -->
+</div>
+{% endblock detail_content %}
+

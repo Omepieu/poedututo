@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="styles.css"> <!-- Vous pouvez ajouter un fichier CSS pour le style -->
+		<title>Page côte à côte</title>
+	</head>
+	<body>
+		<div class="flex-container">
+			<div class="left-column">
+				<!-- Contenu de liste.html -->
+				{% extends "main.html" %}
+				{% load static %}
+				{% block content_page %}
+					<!-- Insérez ici le contenu de liste.html -->
+				{% endblock content_page %}
+			</div>
+			<div class="right-column">
+				<!-- Contenu de detail.html -->
+				{% extends "main.html" %}
+				{% load static %}
+				{% block content_page %}
+					<!-- Insérez ici le contenu de detail.html -->
+				{% endblock content_page %}
+			</div>
+		</div>
+	</body>
+	</html>
+	

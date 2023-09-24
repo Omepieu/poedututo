@@ -1,5 +1,5 @@
 from django.contrib import admin
-from utilisateurs.models import Profil, Code
+from utilisateurs.models import Profil
 
 # Register your models here.
 
@@ -11,8 +11,4 @@ admin.site.register(Profil, ProfilAdmin)  # Register the Profil model with its a
 class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'first_name', 'last_name', 'email')
 
-class CodeAdmin(admin.ModelAdmin):
-    list_display = ('code_html', 'code_css', 'code_js')
-
-admin.site.register(Code, CodeAdmin)  # Register the Code model with its admin class
 

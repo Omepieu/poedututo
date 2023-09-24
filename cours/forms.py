@@ -1,5 +1,5 @@
 from django import forms
-from cours.models import Lesson, Commentaire, Reponse
+from cours.models import Lesson, Commentaire, Reponse, Code
 
 
 class lessonForm(forms.ModelForm):
@@ -45,4 +45,18 @@ class FormDeReponse(forms.ModelForm):
                 'cols':40,
                 'placeholder':'Redigez une reponse'
             })
+        }
+        
+class CodeForm(forms.ModelForm):
+    class Meta:
+        model = Code
+        fields = [
+            'code_html', 
+            'code_css', 
+            'code_js',
+        ]
+        widgets = {
+            'code_html':forms.Textarea(attrs={'class': 'texetarea', 'id':'html-code'}),
+            'code_css':forms.Textarea(attrs={'class': 'texetarea', 'id':'css-code'}),
+            'code_js':forms.Textarea(attrs={'class': 'texetarea', 'id':'js-code'}),
         }

@@ -61,7 +61,7 @@ class Lesson(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.titre)
-        super().save(*args, **kwargs)
+        super(Lesson, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("cours:lecon", kwargs={"niveau": self.niveau.slug, 'slug':self.matiere.slug})
@@ -93,3 +93,8 @@ class Reponse(models.Model):
 
     def __str__(self):
         return "reponse a " + str(self.nom_comment.nom_comment)
+
+class Code(models.Model):
+    code_html = models.TextField(max_length=800, blank=True)
+    code_css = models.TextField(max_length=800, blank=True)
+    code_js = models.TextField(max_length=800, blank=True)

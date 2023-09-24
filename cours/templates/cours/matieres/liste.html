@@ -2,6 +2,6 @@
 {% block content_page %}
   <p class="text-3xl">La liste des langages</p>
 {% for matiere in niveau.matieres.all %}
-  <h1 class="text-lg"><a href="{% url 'cours:lesson' slug=matiere.slug niveau=matiere.niveau.slug %}">{{ matiere.nom }}</a></h1>
+  <h1 class="text-lg"><a href="{% url 'cours:lesson' slug=matiere.slug niveau=matiere.niveau.slug id=matiere.id %}">{{ matiere.nom }}</a></h1>
 {% endfor %}
 {% endblock content_page %}

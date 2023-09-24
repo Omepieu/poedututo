@@ -2,6 +2,6 @@
 {% block content_page %}
   <p class="text-3xl">La liste des niveaux</p>
   {% for niveau in  niveaux %}
-    <h1><a href="{% url 'cours:matiere' slug=niveau.slug %}">{{ niveau.nom }}</a></h1>
+    <h1><a href="{% url 'cours:matiere_liste' slug=niveau.slug %}">{{ niveau.nom }}</a></h1>
   {% endfor %}
 {% endblock content_page %}

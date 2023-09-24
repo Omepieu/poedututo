@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
-from utilisateurs.forms import UserForm,CodeForm, UserUpdateForm, ProfilUpdateForm
+from utilisateurs.forms import UserForm, UserUpdateForm, ProfilUpdateForm
 from utilisateurs.models import Profil
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
@@ -50,17 +50,6 @@ def deconnection(request):
     logout (request)
     return HttpResponseRedirect('/')
 
-
-def sauvegader(request):
-    if request.method == "POST":
-        form = CodeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('code')
-    else:
-        form = CodeForm(request.POST)
-
-    return render(request, 'base/source.html', {'form':form})
 
 @login_required
 def update_profile(request):

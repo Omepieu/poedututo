@@ -1,0 +1,194 @@
+[
+{
+  "model": "cours.niveaux",
+  "pk": 1,
+  "fields": {
+    "nom": "Débutant",
+    "slug": "debutant",
+    "description": "Apprendre les concepts de base de la programmation, tels que les variables, les boucles et les conditions.\r\nUtiliser un langage de programmation simple et convivial, comme Python.\r\nÉcrire des scripts simples pour résoudre des problèmes de base."
+  }
+},
+{
+  "model": "cours.niveaux",
+  "pk": 2,
+  "fields": {
+    "nom": "Intermediaire",
+    "slug": "intermediaire",
+    "description": "Approfondir la compréhension des structures de données, telles que les listes, les tableaux et les dictionnaires.\r\nApprendre des concepts de programmation orientée objet (POO).\r\nTravailler sur des projets plus importants et complexes.\r\nExplorer d'autres langages de programmation selon les besoins (JavaScript, Java, C++, etc.)."
+  }
+},
+{
+  "model": "cours.niveaux",
+  "pk": 3,
+  "fields": {
+    "nom": "Avancé",
+    "slug": "avance",
+    "description": "Maîtriser des compétences avancées telles que la gestion de la mémoire, la concurrence et la parallélisme.\r\nCréer des applications de bureau, des applications web et des applications mobiles.\r\nComprendre les bases de la conception de bases de données et de la gestion des données.\r\nParticiper à des projets open source ou à des projets professionnels."
+  }
+},
+{
+  "model": "cours.niveaux",
+  "pk": 4,
+  "fields": {
+    "nom": "Expert",
+    "slug": "expert",
+    "description": "Avoir une connaissance approfondie d'un ou plusieurs langages de programmation.\r\nMaîtriser des domaines spécifiques tels que l'intelligence artificielle, la sécurité informatique, la blockchain, etc.\r\nContribuer à la recherche et au développement de nouvelles technologies.\r\nPouvoir concevoir et diriger des projets logiciels complexes."
+  }
+},
+{
+  "model": "cours.niveaux",
+  "pk": 5,
+  "fields": {
+    "nom": "Gourou",
+    "slug": "gourou",
+    "description": "Être un leader dans le domaine de la programmation.\r\nAvoir une compréhension approfondie de l'architecture des systèmes informatiques.\r\nÊtre capable de résoudre des problèmes informatiques complexes à grande échelle.\r\nFaire des contributions significatives à l'avancement de la discipline."
+  }
+},
+{
+  "model": "cours.niveaux",
+  "pk": 6,
+  "fields": {
+    "nom": "Maître",
+    "slug": "maitre",
+    "description": "Avoir une connaissance encyclopédique de la programmation.\r\nAvoir influencé de manière significative le domaine de la programmation par des contributions majeures.\r\nÊtre reconnu comme une autorité dans la programmation et l'informatique en général."
+  }
+},
+{
+  "model": "cours.matiere",
+  "pk": 1,
+  "fields": {
+    "matiere_id": "01_langage_html",
+    "nom": "HTML 5",
+    "slug": "html-5",
+    "niveau": 1,
+    "image": "matieres/html-1.webp",
+    "description": "HTML est le langage de balisage standard utilisé pour créer des pages web. Il est composé d'éléments et de balises qui structurent le contenu d'une page web. Les balises HTML sont utilisées pour définir des titres, des paragraphes, des liens, des images, des formulaires, et bien plus encore. Les navigateurs web interprètent le code HTML pour afficher le contenu web de manière structurée.",
+    "created": "2023-09-13",
+    "updated": "2023-09-20"
+  }
+},
+{
+  "model": "cours.matiere",
+  "pk": 2,
+  "fields": {
+    "matiere_id": "01_langage_css",
+    "nom": "CSS",
+    "slug": "css",
+    "niveau": 1,
+    "image": "matieres/R.jpg",
+    "description": "CSS est un langage de feuille de style utilisé pour définir la présentation et l'apparence des éléments HTML d'une page web. Il permet de contrôler les couleurs, les polices, les marges, les espacements, les animations, etc. en séparant la structure HTML du style visuel, ce qui facilite la personnalisation et la mise en page des sites web.",
+    "created": "2023-09-13",
+    "updated": "2023-09-20"
+  }
+},
+{
+  "model": "cours.matiere",
+  "pk": 3,
+  "fields": {
+    "matiere_id": "1_langage_js",
+    "nom": "JavaScript",
+    "slug": "javascript",
+    "niveau": 1,
+    "image": "matieres/javascript.jpg",
+    "description": "JavaScript est un langage de programmation largement utilisé pour ajouter des fonctionnalités interactives et dynamiques aux pages web. Il permet aux développeurs de créer des animations, des formulaires interactifs, des jeux, des requêtes AJAX, et bien plus encore. JavaScript est exécuté côté client dans le navigateur web.",
+    "created": "2023-09-20",
+    "updated": "2023-09-20"
+  }
+},
+{
+  "model": "cours.matiere",
+  "pk": 4,
+  "fields": {
+    "matiere_id": "01_langage_php",
+    "nom": "Php",
+    "slug": "php",
+    "niveau": 1,
+    "image": "matieres/PHP_Logo.png",
+    "description": "PHP est un langage de script côté serveur conçu pour le développement web. Il est principalement utilisé pour générer des pages web dynamiques en interagissant avec des bases de données, en traitant les formulaires et en générant du contenu personnalisé en fonction des demandes des utilisateurs. PHP est souvent associé à des systèmes de gestion de bases de données comme MySQL.",
+    "created": "2023-09-20",
+    "updated": "2023-09-20"
+  }
+},
+{
+  "model": "cours.matiere",
+  "pk": 5,
+  "fields": {
+    "matiere_id": "01_langage_git",
+    "nom": "git",
+    "slug": "git",
+    "niveau": 1,
+    "image": "matieres/git.png",
+    "description": "Git est un système de gestion de versions distribué qui permet de suivre et de gérer les modifications apportées à un ensemble de fichiers au fil du temps. Il est largement utilisé pour la gestion de projet, la collaboration entre développeurs et le suivi des modifications de code source. Git offre des fonctionnalités telles que la création de branches, la fusion (merge), la réversion (revert) et bien plus encore.",
+    "created": "2023-09-20",
+    "updated": "2023-09-20"
+  }
+},
+{
+  "model": "cours.matiere",
+  "pk": 6,
+  "fields": {
+    "matiere_id": "01_langage_tailwind",
+    "nom": "Tailwind CSS",
+    "slug": "tailwind-css",
+    "niveau": 1,
+    "image": "matieres/tailwind.jpg",
+    "description": "Tailwind CSS est une bibliothèque CSS utilitaire qui simplifie la création de mises en page et de composants web. Au lieu de définir manuellement des classes CSS, les développeurs utilisent les classes préconçues de Tailwind pour styliser leurs éléments HTML. Cela accélère le processus de développement en permettant de créer rapidement des interfaces utilisateur cohérentes et réactives.",
+    "created": "2023-09-20",
+    "updated": "2023-09-20"
+  }
+},
+{
+  "model": "cours.code",
+  "pk": 1,
+  "fields": {
+    "code_html": "<div class=\"flex\">\r\n  <div class=\"dg\">\r\n    <img src=\"image1.jpg\" alt=\"Image 1\" class=\"w-full h-32 object-cover\">\r\n    <div class=\"p-4\">\r\n      <h2 class=\"text-xl font-semibold mb-2\">Titre de la carte 1</h2>\r\n      <p class=\"text-gray-600\">Description de la carte 1.</p>\r\n      <div class=\"mt-4\">\r\n        <a href=\"#\" class=\"bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md inline-block\">Bouton</a>\r\n      </div>\r\n      <div class=\"mt-2\">\r\n        <span class=\"text-sm text-gray-400\">Niveau : Facile</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"w-64 h-48 bg-white shadow-md mx-4 mb-4 rounded-lg overflow-hidden\">\r\n    <img src=\"image2.jpg\" alt=\"Image 2\" class=\"w-full h-32 object-cover\">\r\n    <div class=\"p-4\">\r\n      <h2 class",
+    "code_css": ".dg{\r\nbackground:red;\r\n}",
+    "code_js": ""
+  }
+},
+{
+  "model": "cours.code",
+  "pk": 2,
+  "fields": {
+    "code_html": "<div class=\"flex\">\r\n  <div class=\"dg\">\r\n    <img src=\"image1.jpg\" alt=\"Image 1\" class=\"w-full h-32 object-cover\">\r\n    <div class=\"p-4\">\r\n      <h2 class=\"text-xl font-semibold mb-2\">Titre de la carte 1</h2>\r\n      <p class=\"text-gray-600\">Description de la carte 1.</p>\r\n      <div class=\"mt-4\">\r\n        <a href=\"#\" class=\"bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md inline-block\">Bouton</a>\r\n      </div>\r\n      <div class=\"mt-2\">\r\n        <span class=\"text-sm text-gray-400\">Niveau : Facile</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"w-64 h-48 bg-white shadow-md mx-4 mb-4 rounded-lg overflow-hidden\">\r\n    <img src=\"image2.jpg\" alt=\"Image 2\" class=\"w-full h-32 object-cover\">\r\n    <div class=\"p-4\">\r\n      <h2 class",
+    "code_css": ".dg{\r\nbackground:red;\r\n}",
+    "code_js": ""
+  }
+},
+{
+  "model": "cours.code",
+  "pk": 3,
+  "fields": {
+    "code_html": "<div class=\"flex\">\r\n  <div class=\"dg\">\r\n    <img src=\"image1.jpg\" alt=\"Image 1\" class=\"w-full h-32 object-cover\">\r\n    <div class=\"p-4\">\r\n      <h2 class=\"text-xl font-semibold mb-2\">Titre de la carte 1</h2>\r\n      <p class=\"text-gray-600\">Description de la carte 1.</p>\r\n      <div class=\"mt-4\">\r\n        <a href=\"#\" class=\"bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md inline-block\">Bouton</a>\r\n      </div>\r\n      <div class=\"mt-2\">\r\n        <span class=\"text-sm text-gray-400\">Niveau : Facile</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"w-64 h-48 bg-white shadow-md mx-4 mb-4 rounded-lg overflow-hidden\">\r\n    <img src=\"image2.jpg\" alt=\"Image 2\" class=\"w-full h-32 object-cover\">\r\n    <div class=\"p-4\">\r\n      <h2 class",
+    "code_css": ".dg{\r\nbackground:red;\r\n}",
+    "code_js": ""
+  }
+},
+{
+  "model": "cours.code",
+  "pk": 4,
+  "fields": {
+    "code_html": "<p class=\"text\">Description de la carte 1.</p>",
+    "code_css": ".text{\r\ncolor:red;\r\n}",
+    "code_js": ""
+  }
+},
+{
+  "model": "cours.code",
+  "pk": 5,
+  "fields": {
+    "code_html": "<p class=\"text\">Description de la carte 1.</p>",
+    "code_css": ".text{\r\ncolor:red;\r\n}",
+    "code_js": ""
+  }
+},
+{
+  "model": "cours.code",
+  "pk": 6,
+  "fields": {
+    "code_html": "<p class=\"text\">Description de la carte 1.</p>",
+    "code_css": ".text{\r\ncolor:red;\r\n}",
+    "code_js": ""
+  }
+}
+]

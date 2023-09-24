@@ -51,9 +51,6 @@ class Profil(models.Model):
     #     self.type_user = data.get('type_user', self.type_user)
     #     self.save()
 
-class Code(models.Model):
-    code_html = models.TextField(max_length=800, blank=True)
-    code_css = models.TextField(max_length=800, blank=True)
-    code_js = models.TextField(max_length=800, blank=True)
+
 
 

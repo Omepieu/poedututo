@@ -1,0 +1,30 @@
+[
+{
+  "model": "utilisateurs.profil",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "date_de_naissance": "2009-02-15",
+    "pays": "ci",
+    "ville": "babi",
+    "telephone": "1236547895",
+    "photo": "photos/davila23.png",
+    "sexe": "F",
+    "type_user": "ENSEI"
+  }
+},
+{
+  "model": "utilisateurs.profil",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "date_de_naissance": "2001-08-13",
+    "pays": null,
+    "ville": null,
+    "telephone": null,
+    "photo": "",
+    "sexe": "Non sexe",
+    "type_user": "Etudiant(e)"
+  }
+}
+]

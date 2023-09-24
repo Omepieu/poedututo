@@ -1,9 +1,9 @@
 from typing import Any, Dict
 from django.db import models
 from django.http import HttpResponseRedirect, FileResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from cours.forms import lessonForm, FormDeCommentaire, FormDeReponse
+from cours.forms import lessonForm, FormDeCommentaire, FormDeReponse, CodeForm
 from cours.models import Niveaux, Matiere, Lesson
 from django.views.generic import  DetailView, ListView, CreateView, UpdateView, DeleteView, FormView
 # Create your views here.
@@ -11,47 +11,66 @@ def accueil(request):
     matieres = Matiere.objects.all()
     return render(request, 'base/home.html', {'matieres':matieres})
 
-def editeur_de_code(request):
-    return render(request, 'editors/code.html')
+# def editeur_de_code(request):
+#     return render(request, 'cours/code/source.html')
+
+
+
+def sauvegader(request):
+    form = CodeForm()
+    if request.method == "POST":
+        form = CodeForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = CodeForm()
+
+    return render(request, 'cours/code/source.html', {'form':form})
+
 
 class NiveauListView(ListView):
     context_object_name = 'niveaux'
     model = Niveaux
     template_name = 'cours/niveaux/liste.html'
 
-class MatiereListView(DetailView):
-    context_object_name = 'niveau'
-    model = Niveaux
+
+class MatiereListView(ListView):
+    context_object_name = 'matieres'
     template_name = 'cours/matieres/liste.html'
 
-class LeconListView(ListView):
-    paginate_by = 2
-    context_object_name = 'lessons'
-    model = Lesson
-    template_name = 'cours/lesson/liste.html'
-
     def get_queryset(self):
-        # Obtenez la liste des leçons
-        queryset = super().get_queryset()
-        return queryset
+        niveau_slug = self.kwargs['slug']
+        niveau = get_object_or_404(Niveaux, slug=niveau_slug)
+        return Matiere.objects.filter(niveau=niveau)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Ajoutez un champ "pdf_url" ou "pdf_content" à chaque leçon dans le contexte
-        context['lessons'] = Lesson.objects.all()  # Vous pouvez personnaliser cela pour obtenir les leçons que vous souhaitez
+        context['niveau'] = get_object_or_404(Niveaux, slug=self.kwargs['slug'])
         return context
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     nom = self.request.GET.get("recherche")
-    #     if nom:
-    #         queryset = queryset.filter(nom)
-    #     return queryset
+
+class LeconListView(ListView):
+    paginate_by = 100
+    context_object_name = 'lessons'
+    template_name = 'cours/lesson/liste.html'
+
+    def get_queryset(self):
+        niveau_slug = self.kwargs['niveau']
+        matiere_slug = self.kwargs['slug']
+        niveau = get_object_or_404(Niveaux, slug=niveau_slug)
+        matiere = get_object_or_404(Matiere, slug=matiere_slug, niveau=niveau)
+        return Lesson.objects.filter(niveau=niveau, matiere=matiere).order_by('lesson_id')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['niveau'] = get_object_or_404(Niveaux, slug=self.kwargs['niveau'])
+        context['matiere'] = get_object_or_404(Matiere, slug=self.kwargs['slug'], niveau=context['niveau'])
+        return context
 
 
 class LeconDetailView(DetailView, FormView):
-    context_object_name = 'lecon'
+    context_object_name = 'lesson'
     model = Lesson
-    template_name = 'programmes/lecon_detail.html'
+    template_name = 'cours/lesson/detail.html'
     form_class = FormDeCommentaire
     second_form_class = FormDeReponse
 
@@ -112,17 +131,7 @@ class LeconDetailView(DetailView, FormView):
             print("Nouveau reponse")
             return self.form_valid2(form) 
 
-def pdf_view(request, pk):
-    # Récupérez le modèle qui contient le champ PDF, en utilisant la clé primaire (pk) ou un autre identifiant
-    objet_pdf = Lesson.objects.get(pk=pk)
-    
-    # Récupérez le contenu du fichier PDF
-    contenu_pdf = objet_pdf.pdf.read()  # Remplacez "votre_champ_pdf" par le nom de votre champ PDF
 
-    # Créez une réponse de fichier pour renvoyer le PDF au navigateur
-    response = FileResponse(contenu_pdf, content_type='application/pdf')
-    
-    return response
 
 
 class leconCreateView(CreateView):
@@ -175,5 +184,4 @@ class LeconDeleteView(DeleteView):
         return reverse_lazy('cours:lecon', kwargs={'niveau': niveau.slug, 'slug': self.object.matiere.slug})
 
 
-        
  

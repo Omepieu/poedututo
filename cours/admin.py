@@ -18,6 +18,11 @@ admin.site.register(Matiere, MatiereAdmin)
 class lessonAdmin(admin.ModelAdmin):
     list_display = ('lesson_id', 'niveau', 'auteur', 'matiere', 'titre', 'pdf', 'created')
     ordering = ['id']
+    search_fields = ('titre',)
     
 admin.site.register(Lesson, lessonAdmin)
 
+class CodeAdmin(admin.ModelAdmin):
+    list_display = ('code_html', 'code_css', 'code_js')
+
+admin.site.register(Code, CodeAdmin)  # Register the Code model with its admin class

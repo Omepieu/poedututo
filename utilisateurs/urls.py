@@ -11,8 +11,6 @@ urlpatterns = [
     path('profil', views.update_profile, name='profil'),
     path('liste_users', views.recupere_users, name='liste_users'),
 
-    path('code', views.sauvegader, name='code'),
-
     # path("dashboard", bord, name="dashboard"),
 ]
 

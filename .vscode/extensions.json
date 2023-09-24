@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "tabnine.tabnine-vscode",
+        "bradlc.vscode-tailwindcss",
+        "sudoaugustin.tailwindcss-transpiler",
+        "wollacebuarque.tailwind-theme"
+    ]
+}
