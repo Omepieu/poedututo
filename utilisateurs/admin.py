@@ -11,4 +11,8 @@ admin.site.register(Profil, ProfilAdmin)  # Register the Profil model with its a
 class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'first_name', 'last_name', 'email')
 
+admin.site.site_title ="Admin SCHOOL ON LINE"
+admin.site.site_header ="SCHOOL ON LINE"
+admin.site.index_title ="Administrateur"
+
 

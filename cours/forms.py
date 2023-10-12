@@ -5,9 +5,9 @@ from cours.models import Lesson, Commentaire, Reponse, Code
 class lessonForm(forms.ModelForm):
     class Meta():
         model = Lesson
-        fields = ('lesson_id','titre', 'slug', 'video', 'pdf')
+        fields = ('lesson_id','titre','niveau', 'matiere', 'content')
 
-        # widgets = {
+        widgets = {
         #     'lecon_id': forms.TextInput(attrs={'class':'form-control'}),
         #     'nom': forms.TextInput(attrs={'class':'form-control'}),
         #     'slug': forms.TextInput(attrs={'class':'form-control'}),
@@ -15,9 +15,9 @@ class lessonForm(forms.ModelForm):
         #     'video': forms.FileInput(attrs={'class':'form-control'}),
         #     'fpe': forms.TextInput(attrs={'class':'form-control'}),
         #     'pdf': forms.FileInput(attrs={'class':'form-control'}),
-        #     'content':forms.Textarea(attrs={'class':'form-control'}),
+            'content':forms.Textarea(attrs={'class':'form-control', 'id':'editor'}),
             
-        # }
+         }
 
 class FormDeCommentaire(forms.ModelForm):
     class Meta:

@@ -1,15 +1,44 @@
-
 {% load static %}
 
 {% block detail_content %}
 <!-- Contenu de detail.html -->
-<div class="h-screen overflow-hidden w-11/12">
-  <h1 class="text-3xl">{{lesson.niveau}}>{{lesson.matiere}}>{{ lesson.titre}}</h1>
-  {% if lesson.pdf %} 
-  <embed src="{{ lesson.pdf.url }}" type="application/pdf">
-  <iframe src="{{ lesson.pdf.url }}" frameborder="0"></iframe>
-  {% endif %}
-    <!-- ... Le reste de votre contenu detail.html ... -->
-</div>
-{% endblock detail_content %}
+{% if lesson %}
+<div class="overflow-hidden w-11/12 border-r-4 py-4">
+  <h1 class="text-3xl  bg-green-100"><span class="text-blue-500">{{lesson.niveau}}</span>><span
+      class="text-gray-500">{{lesson.matiere}}</span>>{{ lesson.titre}}</h1>
+  <div>
+    {% if lesson.video %}
+    <video autoplay loop class="text-right my-3 w-2/4 h-96">
+      <source src="{{ lesson.video.url }}" type="video/mp4">
+    </video>
+    {% endif %}
+    {% if lesson.content %}
+    <p class="font-bold"> {{lesson.content|safe}} </p>
+    {% else %}
+    <p>Pour le moment, le contenu du leçcon n'est pas accessible.</p>
+    {% endif %}
 
+  </div>
+</div>
+<div>
+  {% if question_reponses %}
+  <h2>Questions et réponses :</h2>
+  <ul>
+    {% for question, reponses in question_reponses.items %}
+    <li>{{ question.texte_question }}</li>
+    <ul>
+      {% for reponse in reponses %}
+      <li>{{ reponse.texte_reponse }}</li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Aucune question n'est associée à cette leçon.</p>
+  {% endif %}
+</div>
+{% else %}
+<p>Aucune leçon par défaut n'a été définie.</p>
+
+{% endif %}
+{% endblock detail_content %}

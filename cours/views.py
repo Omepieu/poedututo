@@ -3,13 +3,16 @@ from django.db import models
 from django.http import HttpResponseRedirect, FileResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from cours.forms import lessonForm, FormDeCommentaire, FormDeReponse, CodeForm
-from cours.models import Niveaux, Matiere, Lesson
+from cours.forms import lessonForm, CodeForm
+from cours.models import Niveaux, Matiere, Lesson, Question, Anwser
 from django.views.generic import  DetailView, ListView, CreateView, UpdateView, DeleteView, FormView
-# Create your views here.
+
+
+
 def accueil(request):
     matieres = Matiere.objects.all()
-    return render(request, 'base/home.html', {'matieres':matieres})
+    context ={'matieres':matieres }
+    return render(request, 'base/home.html', context)
 
 # def editeur_de_code(request):
 #     return render(request, 'cours/code/source.html')
@@ -50,6 +53,7 @@ class MatiereListView(ListView):
 
 class LeconListView(ListView):
     paginate_by = 100
+    model = Lesson
     context_object_name = 'lessons'
     template_name = 'cours/lesson/liste.html'
 
@@ -67,78 +71,38 @@ class LeconListView(ListView):
         return context
 
 
-class LeconDetailView(DetailView, FormView):
+class LeconDetailView(DetailView,):
     context_object_name = 'lesson'
     model = Lesson
     template_name = 'cours/lesson/detail.html'
-    form_class = FormDeCommentaire
-    second_form_class = FormDeReponse
 
     def get_context_data(self, **kwargs):
-        context = super(LeconDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
 
-        if 'form' not in context:
-            context['form'] = self.form_class()
-        if 'form2' not in context:
-            context['form2'] = self.second_form_class()
+        # Récupération de la  leçon actualle
+        lesson = self.object
+        print(lesson)
+        # Récupération de toutes les questions associée à cette leçon
+        questions = Question.objects.filter(lesson=lesson)
+        print(questions)
+        # Créez un dictionnaire pour stocker les questions et leurs réponses associées
+        question_reponses = {}
 
+        for question in questions:
+            # Récuperez toutes les réponses associées à cette Question
+            reponses = Anwser.objects.filter(question=question)
+            question_reponses[question] = reponses
+            print(question_reponses)
+        context['question_reponses'] = question_reponses
+    
         return context
-
-    def form_valid(self, form):
-        self.object = self.get_object()
-        fd = form.save(commit=False)
-        fd.auteur = self.request.user
-        fd.nom_lecon_id = self.object.id
-        fd.save()
-        return HttpResponseRedirect(self.get_success_url())
-    
-    def form_valid2(self, form):
-        self.object = self.get_object()
-        fd = form.save(commit=False)
-        fd.auteur = self.request.user
-        fd.nom_comment_id = self.request.POST.get('comment_id')
-        fd.save()
-        return HttpResponseRedirect(self.get_success_url())
-    
-    def get_success_url(self):
-        self.object = self.get_object()
-        niveau = self.object.niveau
-        matiere = self.object.matiere
-        return reverse_lazy('programme:lecondetail', kwargs={
-            'niveau':niveau.slug,
-            'matiere':matiere.slug, 
-            'slug':self.object.slug
-        })
-
-    
-
-    def post (self, request, *args, **kwargs):
-
-        self.object = self.get_object()
-        if 'form' in request.POST:
-            form_class = self.form_class
-            form_name = 'form'
-        else:
-            form_class = self.second_form_class
-            form_name = 'form2'
-        form = self.get_form(form_class)
-
-        if form_name=='form' and form.is_valid():
-            print("Nouveau commentaire")
-            return self.form_valid(form)
-        
-        if form_name=='form2' and form.is_valid():
-            print("Nouveau reponse")
-            return self.form_valid2(form) 
-
-
 
 
 class leconCreateView(CreateView):
     form_class = lessonForm  # Spécifie le formulaire à utiliser pour la création de la leçon
     context_object_name = 'matieres'  # Le nom de l'objet contextuel à utiliser dans le template
     model = Matiere  # Le modèle associé à la vue
-    template_name = 'programmes/lecon_create.html'  # Le chemin vers le template HTML
+    template_name = 'cours/lesson/forms.html'  # Le chemin vers le template HTML
 
     # Cette méthode définit l'URL de redirection après la création réussie d'une leçon
     def get_success_url(self):
@@ -151,8 +115,8 @@ class leconCreateView(CreateView):
         self.object = self.get_object()
         auto_identifier = form.save(commit=False)  # Crée une instance de Lecon sans l'enregistrer dans la base de données
         auto_identifier.auteur = self.request.user  # Définit l'auteur de la leçon comme l'utilisateur connecté
-        auto_identifier.niveau = self.object.niveau  # Associe le niveau de la leçon au niveau de la matière
-        auto_identifier.matiere = self.object  # Associe la matière à la leçon
+        # auto_identifier.niveau = self.object.niveau  # Associe le niveau de la leçon au niveau de la matière
+        # auto_identifier.matiere = self.object  # Associe la matière à la leçon
         auto_identifier.save()  # Enregistre la leçon dans la base de données
         return HttpResponseRedirect(self.get_success_url())  # Redirige vers l'URL de succès
     
@@ -185,3 +149,5 @@ class LeconDeleteView(DeleteView):
 
 
  
+
+

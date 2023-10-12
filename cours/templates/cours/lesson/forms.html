@@ -1,0 +1,7 @@
+{% extends "main.html" %}
+{% block content_page %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+  </form>
+{% endblock content_page %}

@@ -1,8 +1,11 @@
-from typing import Iterable, Optional
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.utils import timezone
+
+
 
 # Create your models here.
 
@@ -44,10 +47,10 @@ class Lesson(models.Model):
     matiere = models.ForeignKey(Matiere, on_delete=models.CASCADE, related_name='lecon') 
     titre = models.CharField(max_length=100, verbose_name="Titre de leçon")
     slug = models.SlugField(blank=True, null=True)
-    video = models.FileField(upload_to="VIDEOS", null=True, blank=True, verbose_name='Video de cours')
-    pdf = models.FileField(upload_to="PDF", null=True, blank=True, verbose_name='pdf de cours')
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    video = models.FileField(blank=True, null=True, upload_to="VIDEO")
+    content = RichTextUploadingField(null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def get_pdf_url(self):
         return reverse('cours:lesson', kwargs={'niveau':self.niveau.slug, 'slug':self.matiere.slug})
@@ -98,3 +101,33 @@ class Code(models.Model):
     code_html = models.TextField(max_length=800, blank=True)
     code_css = models.TextField(max_length=800, blank=True)
     code_js = models.TextField(max_length=800, blank=True)
+
+
+class Question(models.Model):
+    question_id = models.CharField(unique=True, max_length=100, verbose_name="Identifiant de question", null=True, blank=True)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='questions')
+    texte_question = models.TextField(verbose_name="Texte de la question", null=True)
+    auteur = models.ForeignKey(User, on_delete=models.CASCADE,default=None, null=True)
+    created = models.DateTimeField(auto_now_add=False, default=timezone.now)
+    updated = models.DateTimeField(auto_now=False, default=timezone.now)
+
+    def __str__(self):
+        return self.texte_question
+
+class Anwser(models.Model):
+    reponse_id = models.CharField(unique=True, max_length=100, verbose_name="Identifiant de réponse", null=True, blank=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='reponses')
+    texte_reponse = models.TextField(verbose_name="Texte de la réponse", null=True)
+    EST_CORRECTE_CHOIX = (
+        ('radio', 'Radio'),
+        ('checkbox', 'Checkbox'),
+        ('text', 'Text'),
+    )
+    type_input = models.CharField(max_length=10, choices=EST_CORRECTE_CHOIX, default='radio', verbose_name="Type d'input")
+    est_correcte = models.BooleanField(default=False, verbose_name="Est correcte")
+    auteur = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True)
+    created = models.DateTimeField(auto_now_add=False, default=timezone.now)
+    updated = models.DateTimeField(auto_now=False, default=timezone.now)
+
+    def __str__(self):
+        return self.texte_reponse

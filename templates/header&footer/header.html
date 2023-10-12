@@ -1,11 +1,11 @@
 {% load static %}
-<nav class="bg-gray-800 w-full">
+<nav class="bg-gray-800 w-full fixed top-0 z-10 mb-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
-                    <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                        aria-current="page">ProEduTuto</a>
+                    <a href="{% url 'cours:accueil' %}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                        aria-current="page">SchoolOnline</a>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
@@ -13,7 +13,7 @@
                         <a href="{% url 'cours:accueil' %}" class="btn-nav">Accueil</a>
                         <a href="{% url 'cours:niveau_liste' %}" class="btn-nav">Cours</a>
                         <a href="#" class="btn-nav">Exercices</a>
-                        <a href="#" class="btn-nav">Quizzes</a>
+                        <a href="{% url 'list_quiz' %}" class="btn-nav">Quizzes</a>
                     </div>
                 </div>
             </div>

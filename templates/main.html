@@ -1,22 +1,22 @@
 {% load static tailwind_tags %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>ProdEduTuto</title>
+	<title>SchoolOnline</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	{% tailwind_css %}
-	<script src="{% static 'js/pdf.js' %}"></script>
 </head>
 
 <body>
-	<div class="min-h-full">
+	<div class="max-h-full">
 		{% include "header&footer/header.html" %}
-		<main>
-			<div>
+		<main class="mt-16">
+			<div class="">
 				{% block content_page %}
 				<!-- On doit afficher le contenu ici -->
 				{% endblock content_page %}
@@ -29,15 +29,27 @@
 						<!-- Insérez ici le contenu de liste.html -->
 					{% endblock liste_content %}
 				</div>
-				<div class="w-8/12 border-r-4 py-4" id="detail-content">
+				<div class="w-8/12" id="detail-content">
 					<!-- Contenu de detail.html -->
 					{% block detail_content %}
 						<!-- Insérez ici le contenu de detail.html -->
 					{% endblock detail_content %}
 				</div>
-				<div class="w-2/12">colonne</div>
+				<!-- <div class="w-2/12 justify-center">
+					<div class="w-11/12 h-1/3 shadow-md  ml-2 my-2">
+						<h1 class="text-center text-2xl">Questionnaire</h1>
+					</div>
+					<div class="w-11/12 h-1/3 shadow-md  ml-2 my-2">
+						<h1 class="text-center text-2xl">Exercices</h1>
+					</div>
+					<div class="w-11/12 h-1/3 shadow-md  ml-2 my-2">
+						<h1 class="text-center text-2xl">Quizzes</h1>
+					</div>
+				</div> -->
 			</div>			
 		</main>
+		
+		{% include "header&footer/footer.html"%}
 	</div>
 	<script>
 		// Fonction pour charger le contenu de détail
@@ -49,6 +61,8 @@
 				});
 		}
 	</script>
+
+	
 </body>
 
 </html>

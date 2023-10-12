@@ -3,49 +3,46 @@
 
 {% block liste_content %}
 <!-- Contenu de liste.html -->
-<div class="bg-gray-600 w-64 px-4">
-    <h3 class="ml-4 px-4 font-medium text-bodydark2 text-2xl"><span>Module :</span><span class="text-red-500 underline">{{matiere|upper}}</span></h3>
-</div>
-<aside
-  :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
-  class="absolute left-0 top-0 z-9999 flex w-64 h-screen  flex-col overflow-y-hidden bg-gray-800  duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
-  @click.outside="sidebarToggle = false"
->
-  <div
-    class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear"
-  >
-    <!-- Sidebar Menu -->
-    <nav
-      class="mt-1 py-1  lg:mt-1 lg:px-3"
-      x-data="{selected: 'Dashboard'}"
-      x-init="
-        selected = JSON.parse(localStorage.getItem('selected'));
-        $watch('selected', value => localStorage.setItem('selected', JSON.stringify(value)))"
-    >
-      <!-- Menu Group -->
-      <div>
-        <ul class="mb-3 flex flex-col gap-1">
-          <!-- Menu Item Dashboard -->
-          {% for lesson in lessons %}
-          <li>
-            <a
-              href="#"
-              class="group relative flex items-center text-xl  hover:underline text-white gap-1 rounded-sm py-1 px-1 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-              data-url="{% url 'cours:lesson_detail' slug=lesson.slug matiere=lesson.matiere.slug niveau=lesson.niveau.slug %}"
-              onclick="loadDetailContent(this.getAttribute('data-url'))"
-            >
-              {{lesson.titre}}
-            </a>
-          </li>
-          <!-- Menu Item Dashboard -->
-            {% empty %}
-              <div class="pt-12">
-                <h1 class="font-thin text-red-500 text-3xl ">Pour le moment, le contenu du module n'est pas accessible.</h1>
-              </div>
-              {% endfor %}
-        </ul>
-      </div>
-    </nav>
+{% load static %}
+<div class="bg-gray-800 w-64 fixed">
+  <!-- Le reste de votre code reste inchangé -->
+  <div class="bg-gray-600 w-64 px-4">
+    <h3 class="py-4 font-medium text-bodydark2 text-xl"><span>Module :</span><span
+        class="text-red-500 underline">{{matiere|upper}}</span></h3>
   </div>
-</aside>
+
+  <aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
+    class="absolute left-0 top-0 z-9999 flex w-64 h-screen  flex-col overflow-y-hidden bg-gray-800  duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
+    @click.outside="sidebarToggle = false">
+    <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+      <!-- Sidebar Menu -->
+      <nav class="mt-1 py-1  lg:mt-1 lg:px-3" x-data="{selected: 'Dashboard'}" x-init="
+        selected = JSON.parse(localStorage.getItem('selected'));
+        $watch('selected', value => localStorage.setItem('selected', JSON.stringify(value)))">
+        <!-- Menu Group -->
+        <div>
+          <ul class="mb-3 flex flex-col gap-1">
+            <!-- Menu Item Dashboard -->
+            {% for lesson in lessons %}
+            <li>
+              <a href="#"
+                class="group relative flex items-center text-xl  hover:underline text-white gap-1 rounded-sm py-1 px-1 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+                data-url="{% url 'cours:lesson_detail' slug=lesson.slug matiere=lesson.matiere.slug niveau=lesson.niveau.slug %}"
+                onclick="loadDetailContent(this.getAttribute('data-url'))">
+                {{lesson.titre}}
+              </a>
+            </li>
+            <!-- Menu Item Dashboard -->
+            {% empty %}
+            <div class="pt-12">
+              <h1 class="font-thin text-red-500 text-3xl ">Pour le moment, le contenu du module n'est pas accessible.
+              </h1>
+            </div>
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </aside>
+</div>
 {% endblock liste_content %}

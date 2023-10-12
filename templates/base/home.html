@@ -1,21 +1,21 @@
 {% extends "main.html" %}
 {% load static %}
 {% block content_page %}
-<div class="container mx-auto">
+<div class="mx-auto">
   <div class="p-3 rounded-lg mt-8 mb-3 w-full">
     <h1 class="text-4xl font-semibold text-gray-800 my-3 text-center">Créez le Web de Demain, Apprenez HTML et CSS
       Aujourd'hui !</h1>
     <img src="{% static 'images/accueil.png' %}" alt="Image d'accueil" class="w-full h-96 object-cover rounded-lg mb-4">
     <p class="text-gray-600 text-3xl text-center my-8">Découvrez notre contenu passionnant et engageant.</p>
   </div>
-  <div class="mx-auto grid grid-cols-3 gap-1 pl-44 pr-44">
+  <div class="grid grid-cols-3 gap-3 pl-44 pr-44">
     {% for matiere in matieres %}
-    <div class="w-96 h-80 bg-white shadow-md mx-2 mb-4 rounded-lg overflow-hidden">
+    <div class="w-80 h-72 bg-white shadow-md mx-6 mb-4 rounded-lg overflow-hidden">
       <a href="{% url 'cours:lesson'  slug=matiere.slug  niveau=matiere.niveau.slug  %}">
-        <img src="{{ matiere.image.url }}" alt="{{matiere.nom|upper}}" class="w-36 h-28 mx-auto pt-2  object-cover">
+        <img src="{{ matiere.image.url }}" alt="{{matiere.nom|upper}}" class="w-28 h-24 mx-auto pt-2  object-cover">
         <div class="p-4">
           <h2 class="text-xl font-semibold mb-2 text-center">{{matiere.nom|upper}}</h2>
-          <p class="text-gray-600">{{matiere.description|truncatewords:10}}</p>
+          <p class="text-gray-600 text-center">{{matiere.description|truncatewords:10}}</p>
           <div class="mt-4 text-center">
             <a href="{% url 'cours:lesson'  slug=matiere.slug  niveau=matiere.niveau.slug %}"
               class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md inline-block">Apprendre</a>

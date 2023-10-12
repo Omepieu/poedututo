@@ -1,0 +1,58 @@
+{% extends "main.html" %}
+{% block content_page %}
+<div class="container mx-auto bg-slate-200 flex">
+    <div class="w-4/5">
+        <div class="w-4/6 ml-16 my-4">
+            <h1 class="text-gray-600 font-bold text-3xl text-center p-2">QUIZ HTML DE BASE</h1>
+        </div>
+        <div class="w-3/4 grid grid-cols-3 gap-1 pl-12">
+            <div class="w-64 h-96 bg-gray-300 shadow-md mx-3 mb-4 rounded-lg overflow-hidden">
+                <a href="">
+                    <img src="" alt="" class="w-24 h-16 mx-auto pt-2  object-cover">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2 text-center">Débutant</h2>
+                        <p class="text-black text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="w-64 h-96 bg-yellow-200 shadow-md mx-1 mb-4 rounded-lg overflow-hidden">
+                <a href="">
+                    <img src="" alt="" class="w-24 h-16 mx-auto pt-2  object-cover">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2 text-center">Itermediare</h2>
+                        <p class="text-gray-600 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="w-64 h-96 bg-green-200 shadow-md mx-1 mb-4 rounded-lg overflow-hidden">
+                <a href="#">
+                    <img src="" alt="" class="w-24 h-16 mx-auto pt-2  object-cover">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2 text-center">Expert</h2>
+                        <p class="text-gray-600 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <div class="bg-slate-500 w-4/6 ml-16">
+                <a href="{% url 'question_quiz' %}">
+                    <h1 class="text-white font-bold text-3xl text-center p-2">Demarrer le QUIZ</h1>
+                </a>
+            </div>
+            <div class="bg-slate-300 w-4/6 ml-16">
+                <h1 class="text-gray-800 font-bold text-3xl text-center p-2">Enrichessez vos connaissance</h1>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/5">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Consectetur, suscipit illum minima dolores quasi rerum nostrum dolore libero dignissimos nesciunt
+            et hic delectus eligendi excepturi explicabo dolorum, quis officiis doloribus.
+        </p>
+    </div>
+</div>
+{% endblock content_page %}
